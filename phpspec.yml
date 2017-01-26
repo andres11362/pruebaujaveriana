@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: pruebaujaveriana
+        psr4_prefix: pruebaujaveriana
+        src_path: app
