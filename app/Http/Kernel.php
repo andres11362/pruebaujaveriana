@@ -29,5 +29,6 @@ class Kernel extends HttpKernel
         'auth' => \pruebaujaveriana\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \pruebaujaveriana\Http\Middleware\RedirectIfAuthenticated::class,
+        'admin' => \pruebaujaveriana\Http\Middleware\Admin::class
     ];
 }

@@ -12,23 +12,43 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
+//rutas que involucran al usuario
 Route::resource('usuario','UsuarioController');
 Route::get('dptos/{id}','UsuarioController@getDepartamentos');
 Route::get('mcpios/{id}','UsuarioController@getMunicipios');
 Route::get('datos/{id}','UsuarioController@getDatos');
-
 Route::get('datos/{id}','UsuarioController@getDatos');
 
+Route::get('inicio', 'InicioController@index');
+
+//rutas que involucran a los departamentos
 Route::resource('departamento','DepartamentoController');
 Route::get('paises', 'DepartamentoController@getPaises');
 
+//rutas que involucran a los municipios
 Route::resource('municipio','MunicipioController');
 Route::get('departamentos', 'MunicipioController@getDepart');
 
-Route::resource('pais','PaisController');
+Route::resource('pais','PaisController'); //ruta RESTful de pais
 
-Route::resource('correo','CorreoController');
+Route::resource('correo','CorreoController'); //ruta RESTful de correo
+
+// Rutas de autenticacion...
+Route::get('auth/login',[
+            'uses' => 'Auth\AuthController@getLogin',
+            'as'   => 'auth.login'
+] );
+Route::post('auth/login',[
+    'uses' => 'Auth\AuthController@postLogin',
+    'as'   => 'auth.login'
+] );
+
+Route::get('auth/logout',[
+    'uses' => 'Auth\AuthController@getLogout',
+    'as'   => 'auth.logout'
+] );
+
 
