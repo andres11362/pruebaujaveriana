@@ -22,6 +22,7 @@ Route::get('mcpios/{id}','UsuarioController@getMunicipios');
 Route::get('datos/{id}','UsuarioController@getDatos');
 Route::get('datos/{id}','UsuarioController@getDatos');
 
+//ruta de inicio
 Route::get('inicio', 'InicioController@index');
 
 //rutas que involucran a los departamentos
@@ -36,6 +37,12 @@ Route::resource('pais','PaisController'); //ruta RESTful de pais
 
 Route::resource('correo','CorreoController'); //ruta RESTful de correo
 
+//ruta para indicar el envio de correos
+Route::post('enviar',[
+    'uses' =>'CorreoController@getEmails',
+     'as' => 'correos.send'
+    ]
+);
 // Rutas de autenticacion...
 Route::get('auth/login',[
             'uses' => 'Auth\AuthController@getLogin',

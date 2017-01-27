@@ -6,6 +6,9 @@ use pruebaujaveriana\Http\Requests\Request;
 
 class UsuarioUpdateRequest extends Request
 {
+
+    //clase de tipo request con el objetivo de hacer validaciones al modelo municipio en el caso de un update
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +16,7 @@ class UsuarioUpdateRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return true; //se autoriza el uso de request
     }
 
     /**
@@ -21,14 +24,14 @@ class UsuarioUpdateRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules() //se definen las reglas del request
     {
         return [
-            'id' => 'required',
-            'nombres' => 'required',
-            'apellidos' => 'required',
-            'telefono'  => 'required',
-            'email' => 'required',
+            'id' => 'required', //se define como un campo requerido
+            'nombres' => 'required', //se define como un campo requerido
+            'apellidos' => 'required', //se define como un campo requerido
+            'telefono'  => 'required', //se define como un campo requerido
+            'email' => 'required|email', //se define como un campo requerido y de tipo email
         ];
     }
 }

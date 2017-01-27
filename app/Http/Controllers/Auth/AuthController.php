@@ -32,9 +32,9 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
-    protected $redirectPath = 'inicio';
+    protected $redirectPath = 'inicio'; //se indica la redireccion del login en caso de ser afirmativo
 
-    protected $loginPath = '/auth/login';
+    protected $loginPath = '/auth/login'; //se indica la ruta del login
 
     /**
      * Get a validator for an incoming registration request.
@@ -67,7 +67,7 @@ class AuthController extends Controller
     }
 
     protected function getLogin(){
-        return view('auth.login');
+        return view('auth.login'); //se define ruta de la vista del login
     }
 
 

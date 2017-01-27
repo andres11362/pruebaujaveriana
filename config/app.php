@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'timezone' => 'America/Bogota',
+    'timezone' => 'America/Bogota', //indicamos la zona horario
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'locale' => 'es',
+    'locale' => 'es', //lenguaje que se va usar por defecto en resources/lang/es
 
     /*
     |--------------------------------------------------------------------------
@@ -192,8 +192,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
+        'Form' => Collective\Html\FormFacade::class, //indicamos alias de formulario para laravel collective
+        'Html' => Collective\Html\HtmlFacade::class, //indicamos alias de controles html para laravel collective
 
     ],
 

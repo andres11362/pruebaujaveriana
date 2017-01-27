@@ -16,8 +16,11 @@
     </div>
     <br>
     <table class="table" id="datos">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
-        {!! link_to_route('correo.create', $title = 'Nuevo Correo', $parameters = '', $attributes = ['class' => 'btn btn-primary pull-right']) !!}
+        <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token"> <!--token de la aplicacion-->
+        {!! link_to_route('correo.create', $title = 'Nuevo Correo', $parameters = '', $attributes = ['class' => 'btn btn-primary pull-right']) !!} <!--enlace a la ruta de creacion-->
+        {!!Form::open(['route' => 'correos.send', 'method' => 'POST']) !!} <!--inicio del formulario mediante el uso de laravel collective-->
+            {!! Form::submit('Enviar correos', ['class' => 'btn btn-info pull-right']) !!}
+        {!!Form::close() !!}
         <thead>
             <th>Id</th>
             <th>Asunto</th>
@@ -25,13 +28,13 @@
             <th>Estado</th>
             <th>Acciones</th>
         </thead>
-        @if(sizeof($correos) > 0)
+        @if(sizeof($correos) > 0) <!--determina si el tamaño de los correos es mayor a 0 mostrara los datos de la tabla en caso contrario enviara un mensaje-->
             <tbody>
-            @foreach($correos as $index => $correo)
+            @foreach($correos as $index => $correo) <!--recorrido de por cada registro de correos-->
                 <tr>
                     <td class="user">{{$correo->id}}</td>
                     <td>{{$correo->asunto}}</td>
-                    <td>{{$correo->destinatario}}</td>
+                    <td>{{$correo->destinatario}}</td> <!--atributos de correos-->
                     @if($correo->estado == null)
                         <td>sin estado</td>
                     @else

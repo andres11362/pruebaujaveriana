@@ -9,6 +9,11 @@ use pruebaujaveriana\Http\Controllers\Controller;
 
 class InicioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth'); //indicamos por medio de un constructor  que las acciones del controlador solo seran accedidas solo si hay autorizacion del sistema
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +21,7 @@ class InicioController extends Controller
      */
     public function index()
     {
-        return view('inicio.index');
+        return view('inicio.index'); //funcion de pagina de inicio indicamos a la vista donde se dirige
     }
 
     /**
