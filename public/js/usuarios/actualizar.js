@@ -17,13 +17,6 @@ $('#edicion').click(function (e){
         data: {id: $id, nombres: $nombres, apellidos: $apellidos, telefono: $telefono,
             email: $email, password: $password, municipio_id: $mcpio},
         success: function () {
-            $('#iden').val("");
-            $('#nombres').val("");
-            $('#apellidos').val("");
-            $('#telefono').val("");
-            $('#email').val("");
-            $('#password').val("");
-            $('#mcpio').val(0);
             $('#msj-success').fadeIn();
         },
         error: function (msj){

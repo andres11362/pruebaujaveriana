@@ -96,11 +96,22 @@
                                 <a href="{!! URL::to('/municipio/create') !!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
                             </li>
                             <li>
-                                <a href="/municipio"><i class='fa fa-list-ol fa-fw'></i> Municipios</a>
+                                <a href="{!! URL::to('/municipio') !!}"><i class='fa fa-list-ol fa-fw'></i> Municipios</a>
                             </li>
                         </ul>
                     </li>
                         @endif
+                            <li>
+                                <a href="#"><i class="fa fa-child fa-fw"></i>Correos<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{!! URL::to('/correo/create') !!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+                                    </li>
+                                    <li>
+                                        <a href="{!! URL::to('/correo') !!}"><i class='fa fa-list-ol fa-fw'></i> Correos</a>
+                                    </li>
+                                </ul>
+                            </li>
                 @endif
                 </ul>
             </div>

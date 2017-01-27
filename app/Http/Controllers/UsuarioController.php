@@ -129,7 +129,7 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect('usuario')->with('eliminado', 'Usuario eliminado correctamente');
+        return response()->json(['mensaje' => 'borrado']);
     }
 
     public function getDepartamentos(Request $request,$id){

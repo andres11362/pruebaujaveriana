@@ -17,6 +17,7 @@ class CreateCorreosTable extends Migration
             $table->string('asunto');
             $table->string('destinatario');
             $table->text('mensaje');
+            $table->boolean('estado')->nullable();
             $table->timestamps();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

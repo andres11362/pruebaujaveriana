@@ -4,11 +4,20 @@ namespace pruebaujaveriana\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use pruebaujaveriana\correo;
+use pruebaujaveriana\Http\Requests\CorreoRequest;
 use pruebaujaveriana\Http\Requests;
 use pruebaujaveriana\Http\Controllers\Controller;
 
 class CorreoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +25,12 @@ class CorreoController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = Auth::user()->id;
+
+        $correos = correo::mails($usuario);
+
+        return view('correos.index', ['correos' => $correos]);
+
     }
 
     /**
@@ -26,7 +40,7 @@ class CorreoController extends Controller
      */
     public function create()
     {
-        //
+        return view('correos.create');
     }
 
     /**
@@ -35,9 +49,12 @@ class CorreoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CorreoRequest $request)
     {
-        //
+        if($request->ajax()){
+            correo::create($request->all());
+        }
+        return response()->json(["mensaje" => 'Correo creado']);
     }
 
     /**
@@ -59,7 +76,8 @@ class CorreoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $correo = correo::find($id);
+        return  response()->json($correo);
     }
 
     /**
@@ -69,9 +87,12 @@ class CorreoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CorreoRequest $request, $id)
     {
-        //
+        $correo = correo::find($id);
+        $correo->fill($request->all());
+        $correo->save();
+        return response()->json(['mensaje' => 'listo']);
     }
 
     /**
@@ -82,6 +103,8 @@ class CorreoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $correo = correo::find($id);
+        $correo->delete();
+        return response()->json(['mensaje' => 'borrado']);
     }
 }

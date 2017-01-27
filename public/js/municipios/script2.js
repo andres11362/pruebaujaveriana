@@ -18,7 +18,6 @@ function Eliminar(btn) {
     var value = $('#id').val();
     var dato = $('#nombre').val();
     var route = 'http://localhost:8000/municipio/'+btn.value;
-    d
 
     $.ajax({
         url: route,
