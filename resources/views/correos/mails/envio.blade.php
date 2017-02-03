@@ -5,8 +5,8 @@
     <title>Document</title>
 </head> <!--plantilla de envio de correo-->
 <body>
-<p><stron>Asunto: </stron>{!!$correo->asunto!!}</p>
-<p><stron>Destinatario: </stron>{!!$correo->destinatario!!}</p>
-<p><stron>Mensaje: </stron>{!!$correo->mensaje!!}</p>
+<p><strong>Asunto: </strong>{!!$asunto!!}</p>
+<p><strong>Destinatario: </strong>{!!$destinatario!!}</p>
+<p><strong>Mensaje: </strong>{!!$mensaje!!}</p>
 </body>
 </html>

@@ -110,9 +110,17 @@ class UsuarioController extends Controller
      */
     public function update(UsuarioUpdateRequest $request, $id) //usamos el request personalizado para su uso en el formulario
     {
-        $user = User::find($id);  //usamos la funcion find para encontrar un usuario en especifico usando el id
+        $user = User::find($id);//usamos la funcion find para encontrar un usuario en especifico usando el id
+        //$user->id = $request->get('iden');
+        $user->nombres = $request->get('nombres');
+        $user->apellidos = $request->get('apellidos');
+        $user->telefono = $request->get('telefono');
+        $user->email = $request->get('email');
+        if($request->has('password')){
+            $user->password = bcrypt($request->get('password'));
+        }
+        $user->municipio_id = $request->get('municipio_id');
 
-        $user->fill($request->all()); //se llena la instancia del registro en especifico, indicandole que todos los se envia en el request
         $user->save(); //se guardan los cambios
 
         return response()->json([
@@ -120,7 +128,7 @@ class UsuarioController extends Controller
         ]);
     }
 
-    /**
+    /**p
      * Remove the specified resource from storage.
      *
      * @param  int  $id

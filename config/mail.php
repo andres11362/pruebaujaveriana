@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'), //indicamos el driver que se usara
+    'driver' => env('MAIL_DRIVER'), //indicamos el driver que se usara
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'), //el servidor smtp con el cual vamos a conectar en este caso gmail
+    'host' => env('MAIL_HOST'), //el servidor smtp con el cual vamos a conectar en este caso gmail
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 465), //indicamos el puerto que nos permitira la conexion con el servidor
+    'port' => env('MAIL_PORT'), //indicamos el puerto que nos permitira la conexion con el servidor
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'andres11362@gmail.com', 'name' => 'pruebaujaveriana'], //direccion de correo central y nombre
+    'from' => ['address' => env('MAIL_USER'), 'name' => 'pruebaujaveriana'], //direccion de correo central y nombre
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'ssl'), //tipo de protocolo de encriptacion que se va usar
+    'encryption' => env('MAIL_ENCRYPTION'), //tipo de protocolo de encriptacion que se va usar
 
     /*
     |--------------------------------------------------------------------------

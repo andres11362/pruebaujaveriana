@@ -116,27 +116,32 @@ class CorreoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function getEmails(Request $request) //funcion con la cual se enviaran los correos
+    public function getEmails() //funcion con la cual se enviaran los correos
     {
         $usuario = Auth::User()->id;       //se utiliza el componente de autorizacion en este caso el id del usuario logeado
         $correos = correo::mails($usuario); //se utiliza una funcion hecha con el querybuilder en la cual buscamos todos los correos registrador por el usuario
 
-            foreach ($correos as $correo){   //se hace un recorrido por cada uno de los correos del usuario por medio de un foreach
-                Mail::send('correos.mails.envio',['correo' => $correo ],function ($msj) use($correo){ //se usa el componente Mail para poder usar el envio de correos indicando: la plantilla que se envia y los datos que se van a usar,
-                    $msj->subject($correo->asunto); //indicamos que  subject sera el asunto de cada correo que registra el usuario
-                    $msj->to($correo->destinatario); //indicamos que to sera el destinatario de cada correo que registra el usuario
-                });
+        foreach ($correos as $correo){//se hace un recorrido por cada uno de los correos del usuario por medio de un foreach
 
-                if (Mail::failures()) { //se revisa si el correo ha fallado entonces actualice el estado del correo a false en caso contrario a true
-                    $correo->estado = false;
-                }else{
-                    $correo->estado = true;
-                }
+            $asunto = $correo->asunto;
+            $destinatario = $correo->destinatario;
+            $mensaje = $correo->mensaje;
 
-                $correo->save(); //guardamos los cambios
+            Mail::queue('correos.mails.envio',['asunto' => $asunto, 'destinatario' => $destinatario, 'mensaje' => $mensaje ],function ($msj) use($correo){ //se usa el componente Mail para poder usar el envio de correos indicando: la plantilla que se envia y los datos que se van a usar,
+                $msj->subject($correo->asunto); //indicamos que  subject sera el asunto de cada correo que registra el usuario
+                $msj->to($correo->destinatario); //indicamos que to sera el destinatario de cada correo que registra el usuario
+            });
+
+            if (Mail::failures()) { //se revisa si el correo ha fallado entonces actualice el estado del correo a false en caso contrario a true
+                $correo->estado = false;
+            }else{
+                $correo->estado = true;
             }
 
-        return redirect('correo'); //redirigimos a la vista principal de correo
+            $correo->save(); //guardamos los cambios
+        }
+
+        //return redirect('correo'); //redirigimos a la vista principal de correon
     }
 
 }
